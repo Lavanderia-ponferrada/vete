@@ -24,7 +24,6 @@ const pageTitle = article
   ? `${article.title} | PetFood Expert`
   : "Artículo no encontrado";
 ---
-
 <BaseLayout title={pageTitle}>
   {article ? (
     <AppProviders client:load>
