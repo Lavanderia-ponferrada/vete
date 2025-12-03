@@ -24,13 +24,12 @@ const pageTitle = article
 ---
 
 <BaseLayout title={pageTitle}>
-  {article ? (
-    <AppProviders client:load client:idle>
-      <ArticleDetailPage article={article} brand={brand} />
-    </AppProviders>
-  ) : (
-    <AppProviders client:load client:idle>
-      <NotFound path={Astro.url.pathname} />
-    </AppProviders>
-  )}
+  <AppProviders client:load client:idle>
+    <ArticleDetailPage article={article} brand={brand} />
+  </AppProviders>
+
+  <!-- Radar chart fuera de React, como Astro Island -->
+  <div class="container mt-6">
+    <ArticleRadarChart scores={article.scores} client:load />
+  </div>
 </BaseLayout>
