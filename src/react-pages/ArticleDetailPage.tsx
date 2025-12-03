@@ -126,37 +126,36 @@ const ArticleDetailPage = ({ article, brand }: ArticleDetailPageProps) => {
             animate={{ opacity: 1, y: 0 }}
             className="grid md:grid-cols-2 gap-8"
           >
-
             {/* Score Cards */}
             <div className="space-y-3">
               <h3 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
                 <Award className="h-5 w-5 text-primary" />
                 Puntuaciones Detalladas
               </h3>
-              <ScoreCard 
-                score={article.scores.ingredients} 
-                label="Ingredientes" 
+              <ScoreCard
+                score={article.scores.ingredients}
+                label="Ingredientes"
                 icon={Utensils}
                 description={scoreDescriptions.ingredients}
                 index={0}
               />
-              <ScoreCard 
-                score={article.scores.nutrition} 
-                label="Nutrición" 
+              <ScoreCard
+                score={article.scores.nutrition}
+                label="Nutrición"
                 icon={TrendingUp}
                 description={scoreDescriptions.nutrition}
                 index={1}
               />
-              <ScoreCard 
-                score={article.scores.palatability} 
-                label="Palatabilidad" 
+              <ScoreCard
+                score={article.scores.palatability}
+                label="Palatabilidad"
                 icon={Sparkles}
                 description={scoreDescriptions.palatability}
                 index={2}
               />
-              <ScoreCard 
-                score={article.scores.priceQuality} 
-                label="Calidad/Precio" 
+              <ScoreCard
+                score={article.scores.priceQuality}
+                label="Calidad/Precio"
                 icon={Wallet}
                 description={scoreDescriptions.priceQuality}
                 index={3}

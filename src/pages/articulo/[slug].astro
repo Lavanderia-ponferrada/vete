@@ -48,7 +48,7 @@ const pageTitle = article
   <!-- RadarChart como Astro Island (FUERA DE REACT) -->
   {article && (
     <div class="container mt-6">
-      <ArticleRadarChart scores={article.scores} client:load />
+      <ArticleRadarChart scores={article.scores} />
     </div>
   )}
 </BaseLayout>

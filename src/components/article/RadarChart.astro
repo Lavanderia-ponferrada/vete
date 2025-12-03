@@ -3,26 +3,24 @@ const { scores } = Astro.props;
 const chartId = "radar-" + Math.random().toString(36).slice(2);
 ---
 
-<!-- PONEMOS LOS SCORES EN DATA-*, QUE SIEMPRE FUNCIONA -->
-<div 
-  id={chartId} 
-  class="w-full h-80"
-  data-scores={JSON.stringify(scores)}
-></div>
+<div class="w-full h-80">
+  <canvas
+    id={chartId}
+    data-scores={JSON.stringify(scores)}
+  ></canvas>
+</div>
 
-<script>
+<script define:vars={{ chartId }}>
   import("chart.js/auto").then(({ default: Chart }) => {
-    const el = document.getElementById("{{chartId}}");
+    const canvas = document.getElementById(chartId);
 
-    if (!el) {
+    if (!canvas) {
       console.error("RadarChart: no container found");
       return;
     }
 
-    // Recuperamos los scores desde data-scores
-    const scores = JSON.parse(el.dataset.scores);
-
-    const ctx = el;
+    const scores = JSON.parse(canvas.dataset.scores);
+    const ctx = canvas.getContext("2d");
 
     new Chart(ctx, {
       type: "radar",
@@ -45,6 +43,8 @@ const chartId = "radar-" + Math.random().toString(36).slice(2);
         ]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: true,
         scales: {
           r: {
             suggestedMin: 0,
