@@ -1,6 +1,5 @@
 ---
 import { ArticleRadarChart } from "@/components/article/RadarChart";
-
 const { scores } = Astro.props;
 ---
 
@@ -9,6 +8,5 @@ const { scores } = Astro.props;
 </div>
 
 <script client:load>
-  // Recharts necesita un resize para recalcular dimensiones
   window.dispatchEvent(new Event("resize"));
 </script>
