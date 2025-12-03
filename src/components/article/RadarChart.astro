@@ -1,23 +1,28 @@
 ---
-import type { Props } from "./RadarChart.astro";
-
 const { scores } = Astro.props;
-const chartContainerId = "radar-" + Math.random().toString(36).substring(2);
+const chartId = "radar-" + Math.random().toString(36).slice(2);
 ---
 
-<div id={chartContainerId} class="w-full h-80"></div>
+<!-- PONEMOS LOS SCORES EN DATA-*, QUE SIEMPRE FUNCIONA -->
+<div 
+  id={chartId} 
+  class="w-full h-80"
+  data-scores={JSON.stringify(scores)}
+></div>
 
 <script>
-  const scores = Astro.props.scores;
-  const chartContainerId = "{{chartContainerId}}";
-
   import("chart.js/auto").then(({ default: Chart }) => {
-    const ctx = document.getElementById(chartContainerId);
+    const el = document.getElementById("{{chartId}}");
 
-    if (!ctx) {
-      console.error("RadarChart: no se encontró el canvas");
+    if (!el) {
+      console.error("RadarChart: no container found");
       return;
     }
+
+    // Recuperamos los scores desde data-scores
+    const scores = JSON.parse(el.dataset.scores);
+
+    const ctx = el;
 
     new Chart(ctx, {
       type: "radar",
@@ -36,17 +41,17 @@ const chartContainerId = "radar-" + Math.random().toString(36).substring(2);
             borderColor: "rgba(59,130,246,1)",
             borderWidth: 2,
             pointBackgroundColor: "rgba(59,130,246,1)",
-          },
-        ],
+          }
+        ]
       },
       options: {
         scales: {
           r: {
             suggestedMin: 0,
             suggestedMax: 5,
-          },
-        },
-      },
+          }
+        }
+      }
     });
   });
 </script>
