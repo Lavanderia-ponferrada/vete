@@ -6,7 +6,8 @@ import { StatBar } from "@/components/article/StatBar";
 import { NutrientCircle } from "@/components/article/NutrientCircle";
 import { ScoreCard } from "@/components/article/ScoreCard";
 import { OverallScore } from "@/components/article/OverallScore";
-import RadarIsland from "@/react-islands/RadarIsland";
+import RadarIsland from "@/components/islands/RadarIsland.astro";
+
 
 import { 
   ArrowLeft, Clock, Calendar, CheckCircle2, XCircle, Award, Utensils, 
