@@ -20,20 +20,20 @@ export function ArticleRadarChart({ scores }: RadarChartProps) {
   ];
 
   return (
-    <div className="w-full h-[300px]">
+    <div className="w-full min-h-[300px] relative">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart cx="50%" cy="50%" outerRadius="75%" data={data}>
           <PolarGrid 
-            stroke="hsl(var(--border))" 
+            stroke="hsl(var(--border))"
             strokeDasharray="3 3"
           />
           <PolarAngleAxis 
-            dataKey="subject" 
+            dataKey="subject"
             tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
           />
           <PolarRadiusAxis 
-            angle={90} 
-            domain={[0, 5]} 
+            angle={90}
+            domain={[0, 5]}
             tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }}
             tickCount={6}
           />
