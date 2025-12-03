@@ -1,3 +1,5 @@
+export const ssr = false;
+
 import { ArticleRadarChart } from "@/components/article/RadarChart";
 
 export default function RadarIsland({ scores }) {
