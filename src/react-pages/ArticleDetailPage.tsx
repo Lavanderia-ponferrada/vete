@@ -6,7 +6,6 @@ import { StatBar } from "@/components/article/StatBar";
 import { NutrientCircle } from "@/components/article/NutrientCircle";
 import { ScoreCard } from "@/components/article/ScoreCard";
 import { OverallScore } from "@/components/article/OverallScore";
-import { ArticleRadarChart } from "@/components/article/RadarChart";
 
 import { 
   ArrowLeft, Clock, Calendar, CheckCircle2, XCircle, Award, Utensils, 
@@ -127,14 +126,6 @@ const ArticleDetailPage = ({ article, brand }: ArticleDetailPageProps) => {
             animate={{ opacity: 1, y: 0 }}
             className="grid md:grid-cols-2 gap-8"
           >
-            {/* Radar Chart */}
-            <div className="bg-card rounded-2xl p-6 border border-border flex flex-col">
-              <h3 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
-                <Target className="h-5 w-5 text-primary" />
-                Análisis Visual de Puntuaciones
-              </h3>
-              <ArticleRadarChart scores={article.scores} />
-            </div>
 
             {/* Score Cards */}
             <div className="space-y-3">
