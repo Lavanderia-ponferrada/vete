@@ -1,3 +1,4 @@
+export const ssr = false;
 import { useEffect, useState } from "react";
 import {
   Radar,
@@ -18,7 +19,7 @@ interface RadarChartProps {
   };
 }
 
-const ArticleRadarChart = ({ scores }: RadarChartProps) => {
+export function ArticleRadarChart({ scores }: RadarChartProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -44,22 +45,22 @@ const ArticleRadarChart = ({ scores }: RadarChartProps) => {
     <div className="w-full h-[320px]">
       <ResponsiveContainer width="100%" height={320}>
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
-          <PolarGrid stroke="#ccc" strokeDasharray="3 3" />
+          <PolarGrid stroke="hsl(var(--border))" strokeDasharray="3 3" />
           <PolarAngleAxis
             dataKey="subject"
-            tick={{ fill: "#666", fontSize: 11 }}
+            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
           />
           <PolarRadiusAxis
             angle={90}
             domain={[0, 5]}
-            tick={{ fill: "#666", fontSize: 10 }}
+            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
             tickCount={6}
           />
           <Radar
             name="Puntuación"
             dataKey="value"
-            stroke="#2563eb"
-            fill="#2563eb"
+            stroke="hsl(var(--primary))"
+            fill="hsl(var(--primary))"
             fillOpacity={0.4}
             strokeWidth={2}
           />
@@ -67,6 +68,4 @@ const ArticleRadarChart = ({ scores }: RadarChartProps) => {
       </ResponsiveContainer>
     </div>
   );
-};
-
-export default ArticleRadarChart;
+}
