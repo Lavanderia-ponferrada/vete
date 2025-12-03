@@ -27,17 +27,17 @@ export function ScoreCard({ score, label, icon: Icon, description, index = 0 }: 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 1, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
       className="bg-card rounded-2xl p-5 border border-border hover:shadow-card transition-shadow"
     >
       <div className="flex items-start gap-4">
-        <div className={cn(
-          "h-14 w-14 rounded-xl bg-gradient-to-br flex items-center justify-center shrink-0",
-          getScoreColor()
-        )}>
-          <Icon className="h-7 w-7 text-white" />
+      <div className={cn(
+        "h-14 w-14 rounded-xl bg-gradient-to-br flex items-center justify-center shrink-0",
+        getScoreColor()
+      )}>
+        <Icon className="h-7 w-7 text-white" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-1">
@@ -51,7 +51,7 @@ export function ScoreCard({ score, label, icon: Icon, description, index = 0 }: 
           {/* Mini progress bar */}
           <div className="h-1.5 bg-secondary rounded-full mt-2 overflow-hidden">
             <motion.div
-              initial={{ width: 0 }}
+              initial={{ width: `${(score / 5) * 100}%` }}
               animate={{ width: `${(score / 5) * 100}%` }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className={cn("h-full rounded-full bg-gradient-to-r", getScoreColor())}

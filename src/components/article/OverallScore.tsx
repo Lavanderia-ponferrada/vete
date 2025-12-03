@@ -45,7 +45,7 @@ export function OverallScore({ score, maxScore = 5 }: OverallScoreProps) {
             fill="transparent"
             strokeLinecap="round"
             className={colors.stroke}
-            initial={{ strokeDashoffset: circumference }}
+            initial={{ strokeDashoffset }}
             animate={{ strokeDashoffset }}
             transition={{ duration: 1, ease: "easeOut" }}
             style={{
@@ -54,8 +54,8 @@ export function OverallScore({ score, maxScore = 5 }: OverallScoreProps) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <motion.span 
-            initial={{ scale: 0 }}
+          <motion.span
+            initial={{ scale: 1 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.5, type: "spring" }}
             className={cn("text-3xl font-bold", colors.text)}
@@ -66,7 +66,7 @@ export function OverallScore({ score, maxScore = 5 }: OverallScoreProps) {
         </div>
       </div>
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 1, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
         className="mt-3 flex flex-col items-center gap-1"

@@ -52,7 +52,7 @@ export function StatBar({
       </div>
       <div className={cn("w-full bg-secondary rounded-full overflow-hidden", sizeClasses[size])}>
         <motion.div
-          initial={{ width: 0 }}
+          initial={{ width: `${percentage}%` }}
           animate={{ width: `${percentage}%` }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className={cn("h-full rounded-full", getColorClass())}
