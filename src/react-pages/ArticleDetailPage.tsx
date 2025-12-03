@@ -6,9 +6,7 @@ import { StatBar } from "@/components/article/StatBar";
 import { NutrientCircle } from "@/components/article/NutrientCircle";
 import { ScoreCard } from "@/components/article/ScoreCard";
 import { OverallScore } from "@/components/article/OverallScore";
-import RadarIslandWrapper from "@/react-wrappers/RadarIslandWrapper";
-
-
+import { ArticleRadarChart } from "@/components/article/RadarChart";
 
 import { 
   ArrowLeft, Clock, Calendar, CheckCircle2, XCircle, Award, Utensils, 
@@ -135,7 +133,7 @@ const ArticleDetailPage = ({ article, brand }: ArticleDetailPageProps) => {
                 <Target className="h-5 w-5 text-primary" />
                 Análisis Visual de Puntuaciones
               </h3>
-              <RadarIslandWrapper scores={article.scores} />
+              <ArticleRadarChart scores={article.scores} />
             </div>
 
             {/* Score Cards */}
