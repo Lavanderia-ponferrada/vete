@@ -2,11 +2,11 @@ import { Layout } from "@/components/layout/Layout";
 import { RatingStars } from "@/components/shared/RatingStars";
 import { PetTypeBadge } from "@/components/shared/PetTypeBadge";
 import { Button } from "@/components/ui/button";
-import { ArticleRadarChart } from "@/components/article/RadarChart";
 import { StatBar } from "@/components/article/StatBar";
 import { NutrientCircle } from "@/components/article/NutrientCircle";
 import { ScoreCard } from "@/components/article/ScoreCard";
 import { OverallScore } from "@/components/article/OverallScore";
+import RadarIsland from "@/react-islands/RadarIsland";
 
 import { 
   ArrowLeft, Clock, Calendar, CheckCircle2, XCircle, Award, Utensils, 
