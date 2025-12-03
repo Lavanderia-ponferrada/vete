@@ -1,4 +1,3 @@
-export const ssr = false;
 import { useEffect, useState } from "react";
 import {
   Radar,
@@ -19,7 +18,7 @@ interface RadarChartProps {
   };
 }
 
-export function ArticleRadarChart({ scores }: RadarChartProps) {
+const ArticleRadarChart = ({ scores }: RadarChartProps) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -36,29 +35,31 @@ export function ArticleRadarChart({ scores }: RadarChartProps) {
   ];
 
   if (!mounted) {
-    return <div className="w-full h-[320px] flex items-center justify-center bg-secondary/30 rounded-lg animate-pulse" />;
+    return (
+      <div className="w-full h-[320px] flex items-center justify-center bg-secondary/30 rounded-lg animate-pulse" />
+    );
   }
 
   return (
     <div className="w-full h-[320px]">
       <ResponsiveContainer width="100%" height={320}>
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
-          <PolarGrid stroke="hsl(var(--border))" strokeDasharray="3 3" />
+          <PolarGrid stroke="#ccc" strokeDasharray="3 3" />
           <PolarAngleAxis
             dataKey="subject"
-            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
+            tick={{ fill: "#666", fontSize: 11 }}
           />
           <PolarRadiusAxis
             angle={90}
             domain={[0, 5]}
-            tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
+            tick={{ fill: "#666", fontSize: 10 }}
             tickCount={6}
           />
           <Radar
             name="Puntuación"
             dataKey="value"
-            stroke="hsl(var(--primary))"
-            fill="hsl(var(--primary))"
+            stroke="#2563eb"
+            fill="#2563eb"
             fillOpacity={0.4}
             strokeWidth={2}
           />
@@ -66,4 +67,6 @@ export function ArticleRadarChart({ scores }: RadarChartProps) {
       </ResponsiveContainer>
     </div>
   );
-}
+};
+
+export default ArticleRadarChart;
