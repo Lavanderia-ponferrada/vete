@@ -132,7 +132,9 @@ const ArticleDetailPage = ({ article, brand }: ArticleDetailPageProps) => {
                 <Target className="h-5 w-5 text-primary" />
                 Análisis Visual de Puntuaciones
               </h3>
-              <ArticleRadarChart scores={article.scores} />
+              <div className="w-full" style={{ height: "320px" }}>
+                <ArticleRadarChart scores={article.scores} />
+              </div>
             </div>
 
             {/* Score Cards */}
