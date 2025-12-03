@@ -1,27 +1,25 @@
 ---
-import { onMount } from "astro/jsx-runtime";
+import type { Props } from "./RadarChart.astro";
 
-export interface Props {
-  scores: {
-    ingredients: number;
-    nutrition: number;
-    palatability: number;
-    priceQuality: number;
-  };
-}
-
-let chartContainerId = "radar-" + Math.random().toString(36).substring(2);
+const { scores } = Astro.props;
+const chartContainerId = "radar-" + Math.random().toString(36).substring(2);
 ---
 
 <div id={chartContainerId} class="w-full h-80"></div>
 
 <script>
-  const scores = JSON.parse(`<!--${JSON.stringify(Astro.props.scores)}-->`);
+  const scores = Astro.props.scores;
+  const chartContainerId = "{{chartContainerId}}";
 
-  import("chart.js/auto").then((Chart) => {
-    const ctx = document.getElementById("{chartContainerId}");
+  import("chart.js/auto").then(({ default: Chart }) => {
+    const ctx = document.getElementById(chartContainerId);
 
-    new Chart.default(ctx, {
+    if (!ctx) {
+      console.error("RadarChart: no se encontró el canvas");
+      return;
+    }
+
+    new Chart(ctx, {
       type: "radar",
       data: {
         labels: ["Ingredientes", "Nutrición", "Palatabilidad", "Calidad/Precio"],
@@ -32,23 +30,23 @@ let chartContainerId = "radar-" + Math.random().toString(36).substring(2);
               scores.ingredients,
               scores.nutrition,
               scores.palatability,
-              scores.priceQuality
+              scores.priceQuality,
             ],
             backgroundColor: "rgba(59,130,246,0.3)",
             borderColor: "rgba(59,130,246,1)",
             borderWidth: 2,
-            pointBackgroundColor: "rgba(59,130,246,1)"
-          }
-        ]
+            pointBackgroundColor: "rgba(59,130,246,1)",
+          },
+        ],
       },
       options: {
         scales: {
           r: {
             suggestedMin: 0,
-            suggestedMax: 10
-          }
-        }
-      }
+            suggestedMax: 5,
+          },
+        },
+      },
     });
   });
 </script>
