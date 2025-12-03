@@ -1,0 +1,54 @@
+---
+import { onMount } from "astro/jsx-runtime";
+
+export interface Props {
+  scores: {
+    ingredients: number;
+    nutrition: number;
+    palatability: number;
+    priceQuality: number;
+  };
+}
+
+let chartContainerId = "radar-" + Math.random().toString(36).substring(2);
+---
+
+<div id={chartContainerId} class="w-full h-80"></div>
+
+<script>
+  const scores = JSON.parse(`<!--${JSON.stringify(Astro.props.scores)}-->`);
+
+  import("chart.js/auto").then((Chart) => {
+    const ctx = document.getElementById("{chartContainerId}");
+
+    new Chart.default(ctx, {
+      type: "radar",
+      data: {
+        labels: ["Ingredientes", "Nutrición", "Palatabilidad", "Calidad/Precio"],
+        datasets: [
+          {
+            label: "Puntuación",
+            data: [
+              scores.ingredients,
+              scores.nutrition,
+              scores.palatability,
+              scores.priceQuality
+            ],
+            backgroundColor: "rgba(59,130,246,0.3)",
+            borderColor: "rgba(59,130,246,1)",
+            borderWidth: 2,
+            pointBackgroundColor: "rgba(59,130,246,1)"
+          }
+        ]
+      },
+      options: {
+        scales: {
+          r: {
+            suggestedMin: 0,
+            suggestedMax: 10
+          }
+        }
+      }
+    });
+  });
+</script>
