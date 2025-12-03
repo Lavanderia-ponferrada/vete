@@ -5,6 +5,7 @@ import ArticleDetailPage from "../../react-pages/ArticleDetailPage";
 import NotFound from "../../react-pages/NotFound";
 import articles from "../../data/articles.json";
 import brands from "../../data/brands.json";
+import ArticleRadarChart from "../../components/article/RadarChart";
 
 export async function getStaticPaths() {
   const articles = (await import("../../data/articles.json")).default;
