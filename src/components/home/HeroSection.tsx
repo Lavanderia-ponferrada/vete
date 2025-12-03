@@ -6,20 +6,20 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden paw-pattern">
       {/* Background gradient */}
-      <div 
-        className="absolute inset-0 opacity-90"
+      <div
+        className="absolute inset-0 opacity-90 -z-10"
         style={{ background: "var(--gradient-hero)" }}
       />
       
       {/* Decorative elements */}
-      <div className="absolute top-20 left-10 opacity-20">
+      <div className="absolute top-20 left-10 opacity-20 z-0">
         <PawPrint className="h-20 w-20 text-primary-foreground animate-float" />
       </div>
-      <div className="absolute bottom-20 right-10 opacity-20">
+      <div className="absolute bottom-20 right-10 opacity-20 z-0">
         <PawPrint className="h-16 w-16 text-primary-foreground animate-float" style={{ animationDelay: "2s" }} />
       </div>
 
-      <div className="container relative py-20 md:py-32">
+      <div className="container relative z-10 py-20 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
