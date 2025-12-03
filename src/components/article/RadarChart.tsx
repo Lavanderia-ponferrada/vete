@@ -1,3 +1,4 @@
+export const ssr = false;
 import { useEffect, useState } from "react";
 import {
   Radar,
