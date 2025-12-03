@@ -1,14 +1,18 @@
----  
+---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { AppProviders } from "../../react-pages/AppProviders";
 import ArticleDetailPage from "../../react-pages/ArticleDetailPage";
 import NotFound from "../../react-pages/NotFound";
+
 import articles from "../../data/articles.json";
 import brands from "../../data/brands.json";
+
+// ⚠️ Importamos el RadarChart como componente ASTRO
 import ArticleRadarChart from "../../components/article/RadarChart";
 
 export async function getStaticPaths() {
   const articles = (await import("../../data/articles.json")).default;
+
   return articles.map((article) => ({
     params: { slug: article.slug },
     props: { article },
@@ -16,20 +20,34 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
+
+// Buscamos el artículo
 const article = articles.find((item) => item.slug === slug);
-const brand = article ? brands.find((item) => item.id === article.brandId) : undefined;
+
+// Marca asociada
+const brand = article
+  ? brands.find((item) => item.id === article.brandId)
+  : undefined;
+
+// Título de la página
 const pageTitle = article
   ? `${article.title} | PetFood Expert`
   : "Artículo no encontrado";
 ---
-
 <BaseLayout title={pageTitle}>
+  <!-- Contenido React (NO tocar el radar aquí) -->
   <AppProviders client:load client:idle>
-    <ArticleDetailPage article={article} brand={brand} />
+    {article ? (
+      <ArticleDetailPage article={article} brand={brand} />
+    ) : (
+      <NotFound path={Astro.url.pathname} />
+    )}
   </AppProviders>
 
-  <!-- Radar chart fuera de React, como Astro Island -->
-  <div class="container mt-6">
-    <ArticleRadarChart scores={article.scores} client:load />
-  </div>
+  <!-- RadarChart como Astro Island (FUERA DE REACT) -->
+  {article && (
+    <div class="container mt-6">
+      <ArticleRadarChart scores={article.scores} client:load />
+    </div>
+  )}
 </BaseLayout>
