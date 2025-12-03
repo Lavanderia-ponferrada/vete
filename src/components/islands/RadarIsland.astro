@@ -1,0 +1,14 @@
+---
+import { ArticleRadarChart } from "@/components/article/RadarChart";
+
+const { scores } = Astro.props;
+---
+
+<div class="w-full">
+  <ArticleRadarChart scores={scores} />
+</div>
+
+<script client:load>
+  // Recharts necesita un resize para recalcular dimensiones
+  window.dispatchEvent(new Event("resize"));
+</script>
